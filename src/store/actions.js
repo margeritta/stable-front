@@ -44,16 +44,20 @@ export default {
     context.commit("setAutoLogout");
   },
   async login(context, payload) {
-    const response = await fetch("https://stable-rest-api.herokuapp.com/" + "login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: payload.email,
-        password: payload.password,
-      }),
-    });
+    const response = await fetch(
+      "https://stable-rest-api.herokuapp.com/" + "login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          email: payload.email,
+          password: payload.password,
+        }),
+      }
+    );
     const responseData = await response.json();
 
     if (!response.ok) {
@@ -92,6 +96,7 @@ export default {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + context.rootState.token,
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
         author: context.rootState.userId,
@@ -125,6 +130,7 @@ export default {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + context.rootState.token,
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
         name: payload.name,
@@ -162,6 +168,7 @@ export default {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + context.rootState.token,
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
         first_name: payload.first_name,
@@ -198,6 +205,7 @@ export default {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + context.rootState.token,
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
         employee: payload.employee,
@@ -234,6 +242,7 @@ export default {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + context.rootState.token,
+          "Access-Control-Allow-Origin": "*",
         },
       }
     );
@@ -258,7 +267,16 @@ export default {
   },
 
   async getNewses(context) {
-    const response = await fetch("https://stable-rest-api.herokuapp.com/" + "newses");
+    const response = await fetch(
+      "https://stable-rest-api.herokuapp.com/" + "newses",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    );
     const responseData = await response.json();
 
     if (!response.ok) {
@@ -291,13 +309,17 @@ export default {
     context.commit("SET_NEWSES", results);
   },
   async getEmployeesNewses(context) {
-    const response = await fetch("https://stable-rest-api.herokuapp.com/" + "employees_newses", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + context.rootState.token,
-      },
-    });
+    const response = await fetch(
+      "https://stable-rest-api.herokuapp.com/" + "employees_newses",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + context.rootState.token,
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    );
     const responseData = await response.json();
 
     if (!response.ok) {
@@ -330,13 +352,17 @@ export default {
     context.commit("SET_EMPLOYEES_NEWSES", results);
   },
   async getEmployees(context) {
-    const response = await fetch("https://stable-rest-api.herokuapp.com/" + "employees", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + context.rootState.token,
-      },
-    });
+    const response = await fetch(
+      "https://stable-rest-api.herokuapp.com/" + "employees",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + context.rootState.token,
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    );
     const responseData = await response.json();
 
     if (!response.ok) {
@@ -380,6 +406,7 @@ export default {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + context.rootState.token,
+        "Access-Control-Allow-Origin": "*",
       },
     });
     const responseData = await response.json();
@@ -415,7 +442,16 @@ export default {
     context.commit("SET_TASKS", results);
   },
   async getHorses(context) {
-    const response = await fetch("https://stable-rest-api.herokuapp.com/" + "horses");
+    const response = await fetch(
+      "https://stable-rest-api.herokuapp.com/" + "horses",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    );
     const responseData = await response.json();
 
     if (!response.ok) {
